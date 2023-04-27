@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package api.helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "helloworld/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.helloworld.v1";
+
+service Customer {
+	rpc CreateCustomer (CreateCustomerRequest) returns (CreateCustomerReply) {
+		option (google.api.http) = {
+			post : "/customer"
+			body: "CreateCustomerBody"
+		};
+	}
+//	rpc UpdateCustomer (UpdateCustomerRequest) returns (UpdateCustomerReply);
+//	rpc DeleteCustomer (DeleteCustomerRequest) returns (DeleteCustomerReply);
+	rpc GetCustomer (GetCustomerRequest) returns (GetCustomerReply) {
+		option (google.api.http) = {
+			get: "/customer/{id}"
+		};
+	}
+	rpc ListCustomer (ListCustomerRequest) returns (ListCustomerReply) {
+		option (google.api.http) = {
+			get: "/customer"
+		};
+	}
+}
+
+message CreateCustomerRequest {
+		CreateCustomerBody createCustomerBody = 1;
+}
+
+message CreateCustomerBody {
+	string id = 1;
+	string name = 2;
+}
+message CreateCustomerReply {}
+
+//message UpdateCustomerRequest {}
+//message UpdateCustomerReply {}
+
+//message DeleteCustomerRequest {}
+//message DeleteCustomerReply {}
+
+message GetCustomerRequest {
+	string id = 1;
+}
+message GetCustomerReply {
+	string id = 1;
+	string name = 2;
+}
+
+message ListCustomerRequest {}
+message ListCustomerReply {
+	repeated GetCustomerReply getCustomers = 1;
+}

@@ -1,0 +1,27 @@
+
+### POST CreateCustomer 01
+POST http://localhost:8000/customer
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+   "id" : "01",
+   "name" : "cesar"
+}
+
+### POST CreateCustomer 02
+POST http://localhost:8000/customer
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+  "id" : "02",
+  "name" : "edward"
+}
+
+### GET Customer All
+GET http://localhost:8000/customer
+
+
+### GET Customer
+GET http://localhost:8000/customer/04
